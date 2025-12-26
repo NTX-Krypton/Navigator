@@ -35,7 +35,7 @@ jobs:
       uses: actions/checkout@v6
 
     - name: Fetch dependency NTX-Krypton/Toolkit
-      uses: foxtrotperry/fetch-file-action@v0
+      uses: foxtrotperry/fetch-file-action@v0-alpha
       with:
         url: 'https://github.com/NTX-Krypton/Toolkit/releases/latest/download/ComponentFactory.Krypton.Toolkit.dll'
         path: ${{env.GITHUB_WORKSPACE}}
