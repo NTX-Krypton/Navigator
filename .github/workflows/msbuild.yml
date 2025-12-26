@@ -31,14 +31,18 @@ jobs:
     runs-on: windows-latest
 
     steps:
-    - uses: actions/checkout@v4
+    - name: Checkout repo
+      uses: actions/checkout@v6
 
-    - name: Add MSBuild to PATH
+    - name: Fetch dependency NTX-Krypton/Toolkit
+      uses: foxtrotperry/fetch-file-action@v0
+      with:
+        url: 'https://github.com/NTX-Krypton/Toolkit/releases/latest/download/ComponentFactory.Krypton.Toolkit.dll'
+        path: ${{env.GITHUB_WORKSPACE}}
+        filename: 'ComponentFactory.Krypton.Toolkit.dll'
+
+    - name: Configure MSBuild
       uses: microsoft/setup-msbuild@v1.0.2
-
-    - name: Restore NuGet packages
-      working-directory: ${{env.GITHUB_WORKSPACE}}
-      run: nuget restore ${{env.SOLUTION_FILE_PATH}}
 
     - name: Build
       working-directory: ${{env.GITHUB_WORKSPACE}}
